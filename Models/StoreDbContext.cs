@@ -12,5 +12,6 @@ namespace DrinkStores.Models
             : base(options) { }
 
         public DbSet<Drink> Drinks { get; set; }
+        public DbSet<Category> Category { get; internal set; }
     }
 }

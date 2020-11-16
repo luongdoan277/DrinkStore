@@ -5,33 +5,43 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using DrinkStores.Models.ViewModels;
 using DrinkStores.Models;
 
 namespace DrinkStores.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IStoreRepository repository;
+        public int PageSize = 4;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IStoreRepository repo)
         {
-            _logger = logger;
+            repository = repo;
         }
-
-        public IActionResult Index()
+        public ViewResult Index(int drinkPage = 1)
         {
-            return View();
+            return View(new DrinksListViewModel
+            {
+                Drinks = repository.Drinks
+                .OrderBy(p => p.Id)
+                .Skip((drinkPage - 1) * PageSize)
+                .Take(PageSize),
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = drinkPage,
+                    ItemsPerPage = PageSize,
+                    TotalItems = repository.Drinks.Count()
+                }
+            });
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        //public ViewResult ListView(int CategoryID)
+        //{
+        //    var list = new DrinksListViewModel()
+        //    {
+        //        Drinks = repository.Drinks.FirstOrDefault(l => l.CategoryID = CategoryID)
+        //    };
+        //    return View(list);
+        //}
     }
 }
