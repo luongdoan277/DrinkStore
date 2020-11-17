@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\luong doan\\source\\repos\\DrinkStores\\DrinkStores.csproj": {}
+    "C:\\Users\\luong doan\\source\\repos\\DrinkStore\\DrinkStores.csproj": {}
   },
   "projects": {
-    "C:\\Users\\luong doan\\source\\repos\\DrinkStores\\DrinkStores.csproj": {
+    "C:\\Users\\luong doan\\source\\repos\\DrinkStore\\DrinkStores.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\luong doan\\source\\repos\\DrinkStores\\DrinkStores.csproj",
+        "projectUniqueName": "C:\\Users\\luong doan\\source\\repos\\DrinkStore\\DrinkStores.csproj",
         "projectName": "DrinkStores",
-        "projectPath": "C:\\Users\\luong doan\\source\\repos\\DrinkStores\\DrinkStores.csproj",
+        "projectPath": "C:\\Users\\luong doan\\source\\repos\\DrinkStore\\DrinkStores.csproj",
         "packagesPath": "C:\\Users\\luong doan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\luong doan\\source\\repos\\DrinkStores\\obj\\",
+        "outputPath": "C:\\Users\\luong doan\\source\\repos\\DrinkStore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\luong doan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -55,6 +55,16 @@
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.4, )"
             }
           },
           "imports": [
