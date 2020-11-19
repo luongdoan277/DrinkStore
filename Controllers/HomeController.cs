@@ -19,12 +19,13 @@ namespace DrinkStores.Controllers
         {
             repository = repo;
         }
-        public ViewResult Index(int drinkPage = 1)
+        public ViewResult Index(string category,int drinkPage = 1)
         {
             return View(new DrinksListViewModel
             {
                 Drinks = repository.Drinks
-                .OrderBy(p => p.Id)
+                .Where(d => category == null || d.Category.CategoryName == category)
+                .OrderBy(d => d.Id)
                 .Skip((drinkPage - 1) * PageSize)
                 .Take(PageSize),
                 PagingInfo = new PagingInfo

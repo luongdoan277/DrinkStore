@@ -58,9 +58,27 @@ namespace DrinkStores
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute("catpage",
+                    "{category}/Page{drinkPage:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute("page",
+                    "Page{drinkPage:int}",
+                    new { Controller = "Home", action = "Index", drinkPage = 1 });
+
+                endpoints.MapControllerRoute("category",
+                    "{category}",
+                    new { Controller = "Home", action = "Index", drinkPage = 1 });
+                endpoints.MapControllerRoute("pagination",
+                    "Drinks/page{drinkPage:int}",
+                    new { Controller = "Home", action = "Index", drinkPage = 1 });
+
+                endpoints.MapDefaultControllerRoute();
+
             });
             SeedData.DataDrink(app);
         }

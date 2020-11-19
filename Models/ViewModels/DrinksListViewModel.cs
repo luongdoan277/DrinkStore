@@ -8,6 +8,9 @@ namespace DrinkStores.Models.ViewModels
     public class DrinksListViewModel
     {
         public IEnumerable<Drink> Drinks { get; set; }
+        
         public PagingInfo PagingInfo { get; set; }
+
+        public string CurrentCategory { get; set; }
     }
 }
