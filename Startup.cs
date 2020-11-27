@@ -34,6 +34,10 @@ namespace DrinkStores
                 }
                 );
             services.AddScoped<IStoreRepository, EFStoreRepository>();
+            services.AddRazorPages();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +57,7 @@ namespace DrinkStores
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthorization();
 
@@ -70,14 +75,15 @@ namespace DrinkStores
                     "Page{drinkPage:int}",
                     new { Controller = "Home", action = "Index", drinkPage = 1 });
 
-                endpoints.MapControllerRoute("category",
-                    "{category}",
-                    new { Controller = "Home", action = "Index", drinkPage = 1 });
+                //endpoints.MapControllerRoute("category",
+                //    "{category}",
+                //    new { Controller = "Home", action = "Index", drinkPage = 1 });
                 endpoints.MapControllerRoute("pagination",
                     "Drinks/page{drinkPage:int}",
                     new { Controller = "Home", action = "Index", drinkPage = 1 });
 
                 endpoints.MapDefaultControllerRoute();
+                endpoints.MapRazorPages();
 
             });
             SeedData.DataDrink(app);

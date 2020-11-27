@@ -32,8 +32,12 @@ namespace DrinkStores.Controllers
                 {
                     CurrentPage = drinkPage,
                     ItemsPerPage = PageSize,
-                    TotalItems = repository.Drinks.Count()
-                }
+                    TotalItems = category == null ?
+                    repository.Drinks.Count() :
+                    repository.Drinks.Where(
+                        e => e.Category.CategoryName == category).Count()
+                },
+                CurrentCategory = category
             });
         }
         //public ViewResult ListView(int CategoryID)
@@ -44,5 +48,15 @@ namespace DrinkStores.Controllers
         //    };
         //    return View(list);
         //}
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }
